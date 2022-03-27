@@ -10,38 +10,33 @@ int input()
 
 void input_array(int n, int a[n])
 {
-  for(int i=0;i<n;i++)
-    a[i] = i;
-  a[1]=0;
+  for(int i=1;i<n;i++)
+    {
+      a[i]=i+1;
+    }
 }
 
 void erotosthenes_sieve(int n, int a[n])
 {
-  int i=1,j,count;
-  while(i<=n)
+  int i,j;
+  for(i=1;i<=n;i++)
   {
-   count=0;
-    i=n;
-    while(j<=i/2)
+    for(j=2;j<a[i];j++)
+
       {
-        if(i%j==0)
+        if(a[i]%j==0)
         {
-          count++;
+          a[i]=0;
         break;
         }
-        j++;
+        
       }
-    if(count==0 && i!=n)
-    {
-      printf("%d\n",i);
-    }
-    i++;
   }
 }
 
 void out_put(int n, int a[n])
 {
-  for(int i=0;i<n;i++)
+  for(int i=1;i<n;i++)
     if(a[i]!=0)
       printf("%d ",a[i]);
   printf("\n");
