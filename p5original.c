@@ -1,13 +1,12 @@
 #include <stdio.h>
 #include <math.h>
-int input()
+int input_array_size()
 {
   int n;
-  printf("Enter the number\n");
+  printf("Enter the size of an array\n");
   scanf("%d",&n);
   return n;
 }
-
 void input_array(int n, int a[n])
 {
   for(int i=1;i<n;i++)
@@ -15,7 +14,6 @@ void input_array(int n, int a[n])
       a[i]=i+1;
     }
 }
-
 void erotosthenes_sieve(int n, int a[n])
 {
   int i,j;
@@ -29,11 +27,9 @@ void erotosthenes_sieve(int n, int a[n])
           a[i]=0;
         break;
         }
-        
       }
   }
 }
-
 void out_put(int n, int a[n])
 {
   for(int i=1;i<n;i++)
