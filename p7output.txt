@@ -1,1 +1,95 @@
-
+ gcc -g p7original.c -lm
+ gdb a.out
+GNU gdb (Ubuntu 8.1.1-0ubuntu1) 8.1.1
+Copyright (C) 2018 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+<http://www.gnu.org/software/gdb/documentation/>.
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from a.out...done.
+(gdb) b main
+Breakpoint 1 at 0x96b: file p7original.c, line 37.
+(gdb) r
+Starting program: /home/runner/Test2Session1-1/a.out 
+warning: Error disabling address space randomization: Operation not permitted
+s
+Breakpoint 1, main () at p7original.c:37
+37  {
+(gdb) s
+39    l=input_line();
+(gdb) s
+input_line () at p7original.c:24
+24    l.p1=input_point();
+(gdb) s
+input_point () at p7original.c:15
+15  {
+(gdb) s
+17    printf("Enter the coordinates of the point\n");
+(gdb) n
+Enter the coordinates of the point
+18    scanf("%f %f",&p.x,&p.y);
+(gdb) n
+2 4
+19    return p;
+(gdb) n
+20  }
+(gdb) p p
+$1 = {x = 2, y = 4}
+(gdb) s
+input_line () at p7original.c:25
+25    l.p2=input_point();
+(gdb) s
+input_point () at p7original.c:15
+15  {
+(gdb) s
+17    printf("Enter the coordinates of the point\n");
+(gdb) n
+Enter the coordinates of the point
+18    scanf("%f %f",&p.x,&p.y);
+(gdb) n
+6 8
+19    return p;
+(gdb) n
+20  }
+(gdb) p p
+$2 = {x = 6, y = 8}
+(gdb) s
+input_line () at p7original.c:26
+26    return l;
+(gdb) s
+27  }
+(gdb) p l
+$3 = {p1 = {x = 2, y = 4}, p2 = {x = 6, y = 8}, distance = 1.26116862e-44}
+(gdb) s
+main () at p7original.c:40
+40    find_length(&l);
+(gdb) s
+find_length (l=0x7ffd933a6e80) at p7original.c:30
+30    l->distance=sqrt(((l->p2.x-l->p1.x)*(l->p2.x-l->p1.x))+((l->p2.y-l->p1.y)*(l->p2.y-l->p1.y)));
+(gdb) n
+31  }
+(gdb) n
+main () at p7original.c:41
+41    output(l);
+(gdb) s
+output (l=...) at p7original.c:34
+34    printf("The distance between point (%f,%f) and (%f,%f) is %f \n",l.p1.x,l.p1.y,l.p2.x,l.p2.y,l.distance);
+(gdb) n
+The distance between point (2.000000,4.000000) and (6.000000,8.000000) is 5.656854 
+35  }
+(gdb) n
+main () at p7original.c:42
+42    return 0;
+(gdb) n
+43  }(gdb) c
+Continuing.
+[Inferior 1 (process 4264) exited normally]
+(gdb) 

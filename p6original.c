@@ -1,45 +1,50 @@
 #include <stdio.h>
 #include <string.h>
-void input_string(char *a)
+void input_string(char *s1,char *s2)
 {
-  printf("Enter a string\n");
-  scanf("%s",a);
+  printf("Enter a string and substring\n");
+  scanf("%s %s",s1,s2);
 }
-int str_reverse(char *string, char *substring)
+int string_length(char *s2)
 {
-  int i,j,k,l;
-  l=strlen(substring);
-  for(i=0;string[i+l-1];i++)
+  int j;
+  for(j=0;s2[j]!='\0';j++)
+    return j;
+}
+int string_index(char *s1, char *s2)
+{
+  int i,j;
+  for(i=0,j=0;s1[i]!='\0'&&s2[j]!='\0';i++)
     {
-      k=i;
-      for(j=0;i<=l-1;j++)
-        if(string[k]!=substring[j])
-          break;
+      if(s1[i]==s2[j])
+      {
+        j++;
+      }
+      else
+      {
+        j=0;
+      }
     }
-  if(j==1)
-  {
-    return i;
-  }
-  return -1;
+  return i-j;
 }
-void output(char *string, char *substring, int index)
+void output(char *s1, char *s2, int index,int l)
 {
-  index=str_reverse(string,substring);
-  if(index==-1)
+  if(index==l)
   {
-    printf("The index of %s in %s is %d\n",string,substring,index);
+    printf("The index of the substring is %d\n",index);
   }
   else
   {
-    printf("substring not found\n");
+    printf("Substring not found\n");
   }
 }
 int main()
 {
-  char a[50],string,substring;
-  input_string(a);
-  str_reverse(&string,&substring);
-  int index;
-  output(&string,&substring,index);
+  char s1[100],s2[100];
+  int index,l;
+  input_string(s1,s2);
+  l=string_length(s2);
+  index=string_index(s1,s2);
+  output(s1,s2,index,l);
   return 0;
 }
